@@ -1,0 +1,24 @@
+{
+  "template": "https://github.com/FlorianWilhelm/the-hatchlor",
+  "commit": "302e0ec16e95096d539ac6330f984cab086c5558",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Martin Slabber",
+      "email": "martin@tsolo.io",
+      "project_name": "CyCAx Parts",
+      "project_slug": "cycax-parts",
+      "pkg_name": "cycax_parts",
+      "project_short_description": "Selection of parts made with CyCAx.",
+      "open_source_license": "Apache-2.0",
+      "target_python_version": "3.10",
+      "github_username": "MartinSlabber",
+      "project_repo": "https://github.com/tsolo-io/cycax-parts",
+      "pypi_username": "MartinSlabber",
+      "lock_file_support": false,
+      "_template": "https://github.com/FlorianWilhelm/the-hatchlor",
+      "_commit": "302e0ec16e95096d539ac6330f984cab086c5558"
+    }
+  },
+  "directory": null
+}
