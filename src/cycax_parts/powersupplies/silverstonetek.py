@@ -1,7 +1,7 @@
 from cycax.cycad import Print3D
 
 
-class FlexATXSilverstonetek(Print3D):
+class SilverstonetekFlexATX(Print3D):
     def __init__(self):
         super().__init__(part_no="psu-flexatx-silverstonetek", x_size=81.5, y_size=150, z_size=40.50)
         self.colour = "black"

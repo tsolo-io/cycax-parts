@@ -1,2 +1,2 @@
-from .silverstonetek import FlexATXSilverstonetek  # noqa
-from .apevia import Apevia  # noqa
+from .silverstonetek import SilverstonetekFlexATX  # noqa
+from .apevia import ApeviaFlexATX  # noqa

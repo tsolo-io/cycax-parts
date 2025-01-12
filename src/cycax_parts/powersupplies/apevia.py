@@ -1,7 +1,7 @@
 from cycax.cycad import Print3D
 
 
-class Apevia(Print3D):
+class ApeviaFlexATX(Print3D):
     def __init__(self):
         super().__init__(
             part_no="psu-apevia", x_size=81.5, y_size=150, z_size=40.50
