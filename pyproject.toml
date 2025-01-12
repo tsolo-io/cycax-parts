@@ -1,0 +1,128 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cycax_parts"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+keywords = ["CyCAx", "CAD"]
+authors = [{ name = "Martin Slabber", email = "martin@tsolo.io" }]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://bitbucket.com/tsolo-dev/cycax_parts#readme"
+Issues = "https://bitbucket.com/tsolo-dev/cycax_parts/issues"
+Source = "https://bitbucket.com/tsolo-dev/cycax_parts"
+
+[tool.hatch.version]
+path = "src/cycax_parts/__about__.py"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.envs.default]
+# pre-install-commands = [
+#   "pip install -e {home:uri}/src/tsolo/cycax"
+# ]
+dependencies = [
+# "cycax @ {home:uri}/src/tsolo/cycax",
+  "cycax @ git+https://github.com/tsolo-io/cycax",
+  "bpy"]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.10", "3.11"]
+
+[tool.hatch.envs.docs]
+dependencies = ["mkdocs", "mkdocs-material", "mkdocstrings[python]"]
+
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --clean --strict"
+serve = "mkdocs serve --dev-addr localhost:8003"
+
+[tool.hatch.envs.lint]
+detached = true
+dependencies = ["black>=23.7.0", "mypy>=1.0.0", "ruff>=0.0.243"]
+[tool.hatch.envs.lint.scripts]
+typing = "mypy --install-types --non-interactive {args:src/cycax_parts tests}"
+style = ["ruff format --check {args:.}", "black --check --diff {args:.}"]
+fmt = ["black {args:.}", "ruff format {args:.}", "style"]
+all = ["style", "typing"]
+
+[tool.black]
+target-version = ["py310"]
+line-length = 120
+skip-string-normalization = true
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+lint.select = [
+  "A",
+  "ARG",
+  "B",
+  "C",
+  "DTZ",
+  "E",
+  "EM",
+  "F",
+  "FBT",
+  "I",
+  "ICN",
+  "ISC",
+  "N",
+  "PLC",
+  "PLE",
+  "PLR",
+  "PLW",
+  "Q",
+  "RUF",
+  "S",
+  "T",
+  "TID",
+  "UP",
+  "W",
+  "YTT",
+]
+lint.ignore = [
+  "ISC001",
+  # Allow non-abstract empty methods in abstract base classes
+  "B027",
+  # Allow boolean positional values in function calls, like `dict.get(... True)`
+  "FBT003",
+  # Ignore checks for possible passwords
+  "S105",
+  "S106",
+  "S107",
+  # Ignore complexity
+  "C901",
+  "PLR0911",
+  "PLR0912",
+  "PLR0913",
+  "PLR0915",
+]
+lint.unfixable = [
+  # Don't touch unused imports
+  "F401",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["cycax_parts"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.per-file-ignores]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
