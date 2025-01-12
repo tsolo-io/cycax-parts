@@ -1,5 +1,8 @@
 from cycax.cycad import Print3D
 from cycax.cycad.features import NutCutOut
+from cycax.cycad.engines.part_server import PartEngineServer
+from pathlib import Path
+
 
 
 class ConnCube(Print3D):
@@ -44,3 +47,10 @@ class ConnCube(Print3D):
         self.back.hole(pos=(11 - 4, 11 - 4), diameter=4, depth=4)
         self.left.hole(pos=(4, 11 - 4), diameter=4, depth=4)
         self.top.sphere(pos=(4, 11 - 4), diameter=4, sink=4)
+
+if __name__ == "__main__":
+
+    part = ConnCube()
+    part.save(Path("./build"))
+    cycax_server = PartEngineServer()
+    cycax_server.build(part)

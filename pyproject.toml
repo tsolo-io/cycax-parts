@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "cycax_parts"
 dynamic = ["version"]
-description = ''
+description = 'Selection of common parts made with CyCAx.'
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
@@ -22,9 +22,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Documentation = "https://bitbucket.com/tsolo-dev/cycax_parts#readme"
-Issues = "https://bitbucket.com/tsolo-dev/cycax_parts/issues"
-Source = "https://bitbucket.com/tsolo-dev/cycax_parts"
+Documentation = "https://github.com/tsolo-io/cycax-parts/blob/main/README.md"
+Issues = "https://github.com/tsolo-io/cycax-parts/issues"
+Source = "https://github.com/tsolo-io/cycax-parts"
 
 [tool.hatch.version]
 path = "src/cycax_parts/__about__.py"
@@ -37,9 +37,8 @@ allow-direct-references = true
 #   "pip install -e {home:uri}/src/tsolo/cycax"
 # ]
 dependencies = [
-# "cycax @ {home:uri}/src/tsolo/cycax",
   "cycax @ git+https://github.com/tsolo-io/cycax",
-  "bpy"]
+]
 
 [[tool.hatch.envs.all.matrix]]
 python = ["3.10", "3.11"]
