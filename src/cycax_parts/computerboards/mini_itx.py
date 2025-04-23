@@ -18,8 +18,8 @@ def mini_itx_mounting_holes():
     # This is the mounting holes as seen from the top.
     # Mounting holes
     lr_holes = 157.48  # Distance between Left-Right holes.
-    lfb_holes = 154.94  # Distance betweem Front-Back holes on the left.
-    rfb_holes = 132.08  # Distance betweem Front-Back holes on the right.
+    lfb_holes = 154.94  # Distance between Front-Back holes on the left.
+    rfb_holes = 132.08  # Distance between Front-Back holes on the right.
     l_edge = 6.35  # Holes on left from edge
     f_edge = MINIITX_PCB - lfb_holes - 10.16  # The spec gives the distance from the back.
 
@@ -61,7 +61,7 @@ class MiniItxMb(Print3D):
 
 pcie_extra = 8  # The extra space needed for the PCIe card.
 # !! Note this is from long edge of PCIe bracket to motherboard and excludes the mounting "lip", thats and extra 4mm.
-# This asume we remove the PCIe bracket shipped with the NIC.
+# This assume we remove the PCIe bracket shipped with the NIC.
 
 
 class MiniItxMbLpPcie(Print3D):
