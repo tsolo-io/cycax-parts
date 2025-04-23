@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Apache-2.0
+#
+# SPDX-License-Identifier: Apache-2.0
+
 from cycax.cycad import Print3D
 from cycax.cycad.features import NutCutOut
 from cycax.cycad.engines.part_server import PartEngineServer

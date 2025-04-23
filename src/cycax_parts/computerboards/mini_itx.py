@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Apache-2.0
+#
+# SPDX-License-Identifier: Apache-2.0
+
 from cycax.cycad import Print3D
 
 MINIITX_PCB = 170  # Size of the PCB of a mini-itx board. The PCB is square.
@@ -7,7 +11,7 @@ MINIITX_Y_SIZE = 172  #  Measure 2mm over.
 
 def mini_itx_mounting_holes():
     """
-    Back is the commectors.
+    Back is the connectors.
     Left is the PCIe slot.
     Top is the component side.
     """

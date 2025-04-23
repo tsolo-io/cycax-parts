@@ -7,19 +7,22 @@ name = "cycax_parts"
 dynamic = ["version"]
 description = 'Selection of common parts made with CyCAx.'
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11,<3.12"
 license = "Apache-2.0"
 keywords = ["CyCAx", "CAD"]
 authors = [{ name = "Martin Slabber", email = "martin@tsolo.io" }]
 classifiers = [
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+    "bpy",           # Importing Blender Python API is a temporary workaround until a proper solution is found.
+    "python-dotenv",
+]
 
 [project.urls]
 Documentation = "https://github.com/tsolo-io/cycax-parts/blob/main/README.md"
@@ -36,9 +39,7 @@ allow-direct-references = true
 # pre-install-commands = [
 #   "pip install -e {home:uri}/src/tsolo/cycax"
 # ]
-dependencies = [
-  "cycax @ git+https://github.com/tsolo-io/cycax",
-]
+dependencies = ["cycax @ git+https://github.com/tsolo-io/cycax"]
 
 [[tool.hatch.envs.all.matrix]]
 python = ["3.10", "3.11"]
@@ -68,52 +69,52 @@ skip-string-normalization = true
 target-version = "py310"
 line-length = 120
 lint.select = [
-  "A",
-  "ARG",
-  "B",
-  "C",
-  "DTZ",
-  "E",
-  "EM",
-  "F",
-  "FBT",
-  "I",
-  "ICN",
-  "ISC",
-  "N",
-  "PLC",
-  "PLE",
-  "PLR",
-  "PLW",
-  "Q",
-  "RUF",
-  "S",
-  "T",
-  "TID",
-  "UP",
-  "W",
-  "YTT",
+    "A",
+    "ARG",
+    "B",
+    "C",
+    "DTZ",
+    "E",
+    "EM",
+    "F",
+    "FBT",
+    "I",
+    "ICN",
+    "ISC",
+    "N",
+    "PLC",
+    "PLE",
+    "PLR",
+    "PLW",
+    "Q",
+    "RUF",
+    "S",
+    "T",
+    "TID",
+    "UP",
+    "W",
+    "YTT",
 ]
 lint.ignore = [
-  "ISC001",
-  # Allow non-abstract empty methods in abstract base classes
-  "B027",
-  # Allow boolean positional values in function calls, like `dict.get(... True)`
-  "FBT003",
-  # Ignore checks for possible passwords
-  "S105",
-  "S106",
-  "S107",
-  # Ignore complexity
-  "C901",
-  "PLR0911",
-  "PLR0912",
-  "PLR0913",
-  "PLR0915",
+    "ISC001",
+    # Allow non-abstract empty methods in abstract base classes
+    "B027",
+    # Allow boolean positional values in function calls, like `dict.get(... True)`
+    "FBT003",
+    # Ignore checks for possible passwords
+    "S105",
+    "S106",
+    "S107",
+    # Ignore complexity
+    "C901",
+    "PLR0911",
+    "PLR0912",
+    "PLR0913",
+    "PLR0915",
 ]
 lint.unfixable = [
-  # Don't touch unused imports
-  "F401",
+    # Don't touch unused imports
+    "F401",
 ]
 
 [tool.ruff.lint.isort]
