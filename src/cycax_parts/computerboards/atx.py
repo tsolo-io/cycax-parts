@@ -24,18 +24,38 @@ def atx_mounting_holes():
     # This is the mounting holes as seen from the top.
     # Mounting holes
 
-    return (  # TODO: complete the list of mounting holes
-        (1, 1),  # hole f
-    )
+    inches = [ # These values are in inches.
+        (11.35, 0.4),  # A
+        (8.25, 0.4),  # B
+        (6.45, 0.4),  # C
+        (0.25, 1.3),  # F
+        (11.35, 6.5),
+        (6.45, 6.5),
+        (0.25, 6.5),
+        (11.35, 9.35),
+        (6.45, 9.35),
+        (0.25, 9.35),
+        (9.05, 6.5),
+        (8.25, 6.5),
+    ]
+    in_mm = []
+    for hole in inches:
+        # Convert the inches to mm.
+        in_mm.append((hole[0] * 25.4, hole[1] * 25.4))
+    return in_mm
 
 
 def atx_connectors():
-    """ """
+    """Some random holes to mark the connector end of the Motherboard."""
     return ((20, 20), (40, 20), (60, 20))
 
 
 class BaseATX(Print3D):
-    """ """
+    """A Base class of ATX type mother boards.
+
+    Note:
+        Do not use this class directly. Use it to build other classes with.
+    """
 
     def definition(self):
         for pos in atx_mounting_holes():
@@ -43,7 +63,7 @@ class BaseATX(Print3D):
                 self.top.hole(pos=pos, diameter=4)
                 bpos = (pos[0], self.y_size - pos[1])
                 self.bottom.hole(pos=bpos, diameter=3.2, external_subtract=True)
-        # A few silly features to identify the back.
+        # A few silly features to identify the connector end.
         for pos in atx_connectors():
             if pos[0] < self.x_size and pos[1] < self.z_size:
                 self.back.hole(pos=pos, diameter=10, depth=5)

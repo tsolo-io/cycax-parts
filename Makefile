@@ -8,3 +8,6 @@ help:
 
 build:
 	hatch run python3 src/cycax_parts/build.py
+
+format:
+	hatch run lint:fmt
