@@ -24,7 +24,7 @@ def atx_mounting_holes():
     # This is the mounting holes as seen from the top.
     # Mounting holes
 
-    inches = [ # These values are in inches.
+    inches = [  # These values are in inches.
         (11.35, 0.4),  # A
         (8.25, 0.4),  # B
         (6.45, 0.4),  # C
@@ -66,7 +66,11 @@ class BaseATX(Print3D):
         # A few silly features to identify the connector end.
         for pos in atx_connectors():
             if pos[0] < self.x_size and pos[1] < self.z_size:
-                self.back.hole(pos=pos, diameter=10, depth=5)
+                self.front.hole(pos=pos, diameter=10, depth=5)
+        # Trim off the material not part of the face.
+        self.front.box(pos=(6.5 * 25.4, 0), depth=3.3, length=self.x_size, width=self.z_size)
+        # self.left.box(pos=(self.y_size+3.3,10), depth=3.8, length=self.y_size, width=self.z_size-20)
+        self.left.box(pos=(-3.3, 0), depth=3.8, length=self.y_size, width=self.z_size)
 
 
 class StandardATX(BaseATX):
