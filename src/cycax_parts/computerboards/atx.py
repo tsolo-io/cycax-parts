@@ -82,7 +82,7 @@ class StandardATX(BaseATX):
 
     def __init__(self, standoff=8):
         super().__init__(
-            part_no="atx-motherboard",
+            part_no="standard-atx-motherboard",
             x_size=305,  # TODO
             y_size=244,  # TODO
             z_size=47 + (standoff - 2),
@@ -99,7 +99,7 @@ class MicroATX(BaseATX):
 
     def __init__(self, standoff=8):
         super().__init__(
-            part_no="atx-motherboard",
+            part_no="micro-atx-motherboard",
             x_size=243.84,  # TODO a bit extra for the connector section that can hang over the edge of the PCB.
             y_size=243.84,
             z_size=47 + (standoff - 2),
