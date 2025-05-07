@@ -24,24 +24,24 @@ def atx_mounting_holes():
     # This is the mounting holes as seen from the top.
     # Mounting holes
 
-    inches = [  # These values are in inches.
-        (11.35, 0.4),  # A
-        (8.25, 0.4),  # B
-        (6.45, 0.4),  # C
-        (0.25, 1.3),  # F
-        (11.35, 6.5),
-        (6.45, 6.5),
-        (0.25, 6.5),
-        (11.35, 9.35),
-        (6.45, 9.35),
-        (0.25, 9.35),
-        (9.05, 6.5),
-        (8.25, 6.5),
-    ]
-    in_mm = []
-    for hole in inches:
+    inches = {  # These values are in inches.
+        "A": (11.35, 0.4),
+        "B": (8.25, 0.4),
+        "C": (6.45, 0.4),
+        "F": (0.25, 1.3),
+        "G": (11.35, 6.5),
+        "H": (6.45, 6.5),
+        "J": (0.25, 6.5),
+        "K": (11.35, 9.35),
+        "L": (6.45, 9.35),
+        "M": (0.25, 9.35),
+        "R": (9.05, 6.5),
+        "S": (8.25, 6.5),
+    }
+    in_mm = {}
+    for name, pos in inches.items():
         # Convert the inches to mm.
-        in_mm.append((hole[0] * 25.4, hole[1] * 25.4))
+        in_mm[name] = (pos[0] * 25.4 + 3.8, pos[1] * 25.4 + 3.3)
     return in_mm
 
 
@@ -58,7 +58,7 @@ class BaseATX(Print3D):
     """
 
     def definition(self):
-        for pos in atx_mounting_holes():
+        for pos in atx_mounting_holes().values():
             if pos[0] < self.x_size and pos[1] < self.y_size:
                 self.top.hole(pos=pos, diameter=4)
                 bpos = (pos[0], self.y_size - pos[1])
