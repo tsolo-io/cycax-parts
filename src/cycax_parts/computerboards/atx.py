@@ -68,7 +68,7 @@ class BaseATX(Print3D):
             if pos[0] < self.x_size and pos[1] < self.z_size:
                 self.front.hole(pos=pos, diameter=10, depth=5)
         # Trim off the material not part of the face.
-        self.front.box(pos=(6.5 * 25.4, 0), depth=3.3, length=self.x_size, width=self.z_size)
+        self.front.box(pos=(6.25 * 25.4, 0), depth=3.3, length=self.x_size, width=self.z_size)
         # self.left.box(pos=(self.y_size+3.3,10), depth=3.8, length=self.y_size, width=self.z_size-20)
         self.left.box(pos=(-3.3, 0), depth=3.8, length=self.y_size, width=self.z_size)
 
@@ -83,8 +83,8 @@ class StandardATX(BaseATX):
     def __init__(self, standoff=8):
         super().__init__(
             part_no="standard-atx-motherboard",
-            x_size=305,  # TODO
-            y_size=244,  # TODO
+            x_size=305 + 3.8,  # Motherboard + overhang
+            y_size=244 + 3.3,  # Motherboard + overhang
             z_size=47 + (standoff - 2),
         )
         self.colour = "blue"
@@ -100,8 +100,24 @@ class MicroATX(BaseATX):
     def __init__(self, standoff=8):
         super().__init__(
             part_no="micro-atx-motherboard",
-            x_size=243.84,  # TODO a bit extra for the connector section that can hang over the edge of the PCB.
-            y_size=243.84,
+            x_size=244 + 3.8,  # Motherboard + overhang
+            y_size=244 + 3.3,  # Motherboard + overhang
+            z_size=47 + (standoff - 2),
+        )
+        self.colour = "blue"
+
+class MiniITX(BaseATX):
+    """Mini ITX motherboard.
+
+    This is for a mini ITX motherboard.
+    Including 8mm standoffs, for mounting motherboard to case.
+    """
+
+    def __init__(self, standoff=8):
+        super().__init__(
+            part_no="mini-itx-motherboard",
+            x_size=170 + 3.8,  # Motherboard + overhang
+            y_size=170 + 3.3,  # Motherboard + overhang
             z_size=47 + (standoff - 2),
         )
         self.colour = "blue"

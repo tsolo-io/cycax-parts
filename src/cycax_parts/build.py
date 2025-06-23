@@ -5,7 +5,7 @@ from pathlib import Path
 from cycax.cycad.engines.part_server import PartEngineServer
 from dotenv import load_dotenv
 
-from cycax_parts.computerboards.atx import MicroATX, StandardATX
+from cycax_parts.computerboards.atx import MicroATX, StandardATX, MiniITX
 from cycax_parts.computerboards.mini_itx import MiniItxMbLpPcie
 from cycax_parts.construction.conn_cube import ConnCube
 from cycax_parts.powersupplies.apevia import ApeviaFlexATX
@@ -22,7 +22,7 @@ else:
 def main():
     build_dir = Path("./build")
     build_dir.mkdir(parents=True, exist_ok=True)
-    part_classes = [MiniItxMbLpPcie, ConnCube, SilverstonetekFlexATX, Meanwell15V, ApeviaFlexATX, StandardATX, MicroATX]
+    part_classes = [MiniItxMbLpPcie, ConnCube, SilverstonetekFlexATX, Meanwell15V, ApeviaFlexATX, StandardATX, MicroATX, MiniITX]
     for part_class in part_classes:
         part = part_class()
         part.save(build_dir)
