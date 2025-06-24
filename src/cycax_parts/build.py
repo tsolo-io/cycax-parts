@@ -21,11 +21,13 @@ else:
 
 
 def motherboard_case(motherboard):
-    print("PARTNO", motherboard.part_no)
-    assembly = Assembly(motherboard.part_no)
+    name = motherboard.part_no
+    assembly = Assembly(f"{name}_case")
     assembly.add(motherboard)
-    upright = SheetMetal(x_size=motherboard.x_size + 20, y_size=motherboard.z_size + 10, z_size=2, part_no="upright")
-    base = SheetMetal(x_size=motherboard.x_size + 20, y_size=motherboard.y_size + 10, z_size=2, part_no="base")
+    upright = SheetMetal(
+        x_size=motherboard.x_size + 20, y_size=motherboard.z_size + 10, z_size=2, part_no=f"{name}-upright"
+    )
+    base = SheetMetal(x_size=motherboard.x_size + 20, y_size=motherboard.y_size + 10, z_size=2, part_no=f"{name}-base")
 
     assembly.add(upright)
     assembly.add(base)
@@ -51,7 +53,7 @@ def main():
     for part_class in part_classes:
         part = part_class()
         assembly = motherboard_case(part)
-        assembly.save(build_dir / part.part_no)
+        assembly.save(build_dir / assembly.name)
         cycax_server = PartEngineBuild123d()
         assembly.build(engine=AssemblyBuild123d(part.part_no), part_engines=[cycax_server])
 
