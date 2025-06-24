@@ -22,6 +22,7 @@ classifiers = [
 dependencies = [
     "bpy",           # Importing Blender Python API is a temporary workaround until a proper solution is found.
     "python-dotenv",
+    "cycax @ git+https://github.com/tsolo-io/cycax@martin/rectangle_cutout"
 ]
 
 [project.urls]
@@ -39,7 +40,7 @@ allow-direct-references = true
 # pre-install-commands = [
 #   "pip install -e {home:uri}/src/tsolo/cycax"
 # ]
-dependencies = ["cycax @ git+https://github.com/tsolo-io/cycax"]
+dependencies = []
 
 [[tool.hatch.envs.all.matrix]]
 python = ["3.10", "3.11"]

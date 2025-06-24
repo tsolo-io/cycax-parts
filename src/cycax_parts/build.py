@@ -1,8 +1,9 @@
 import logging
 import os
 from pathlib import Path
-
-from cycax.cycad.engines.part_server import PartEngineServer
+from cycax.cycad import Assembly, SheetMetal
+from cycax.cycad.engines.part_build123d import PartEngineBuild123d
+from cycax.cycad.engines.assembly_build123d import AssemblyBuild123d
 from dotenv import load_dotenv
 
 from cycax_parts.computerboards.atx import MicroATX, StandardATX, MiniITX
@@ -19,15 +20,40 @@ else:
     logging.basicConfig(level=logging.INFO)
 
 
+def motherboard_case(motherboard):
+    print("PARTNO", motherboard.part_no)
+    assembly = Assembly(motherboard.part_no)
+    assembly.add(motherboard)
+    upright = SheetMetal(x_size=motherboard.x_size + 20, y_size=motherboard.z_size + 10, z_size=2, part_no="upright")
+    base = SheetMetal(x_size=motherboard.x_size + 20, y_size=motherboard.y_size + 10, z_size=2, part_no="base")
+
+    assembly.add(upright)
+    assembly.add(base)
+    upright.rotate("x")
+    base.level(front=upright.back, bottom=upright.bottom, left=upright.left)
+    motherboard.level(front=upright.back, bottom=base.top, left=base.left)
+    motherboard.move(x=10)
+    motherboard.level(front=upright.back, bottom=base.top, subtract=True)
+    return assembly
+
+
 def main():
     build_dir = Path("./build")
     build_dir.mkdir(parents=True, exist_ok=True)
-    part_classes = [MiniItxMbLpPcie, ConnCube, SilverstonetekFlexATX, Meanwell15V, ApeviaFlexATX, StandardATX, MicroATX, MiniITX]
+    part_classes = [ConnCube, SilverstonetekFlexATX, Meanwell15V, ApeviaFlexATX]
     for part_class in part_classes:
         part = part_class()
         part.save(build_dir)
-        cycax_server = PartEngineServer()
+        cycax_server = PartEngineBuild123d()
         cycax_server.build(part)
+
+    part_classes = [MiniItxMbLpPcie, StandardATX, MicroATX, MiniITX]
+    for part_class in part_classes:
+        part = part_class()
+        assembly = motherboard_case(part)
+        assembly.save(build_dir / part.part_no)
+        cycax_server = PartEngineBuild123d()
+        assembly.build(engine=AssemblyBuild123d(part.part_no), part_engines=[cycax_server])
 
 
 if __name__ == "__main__":
