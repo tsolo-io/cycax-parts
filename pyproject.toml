@@ -24,9 +24,8 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-    "bpy",           # Importing Blender Python API is a temporary workaround until a proper solution is found.
     "python-dotenv",
-    "cycax @ git+https://github.com/tsolo-io/cycax@martin/rectangle_cutout"
+    "cycax @ git+https://github.com/tsolo-io/cycax"
 ]
 
 [project.urls]
