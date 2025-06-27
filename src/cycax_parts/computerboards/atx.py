@@ -57,6 +57,27 @@ class BaseATX(Print3D):
         Do not use this class directly. Use it to build other classes with.
     """
 
+    board_x_size = 0
+    board_y_size = 0
+
+    def __init__(
+        self, *, standoff: float = 8.0, desktop: bool = True, pcie_full_height: bool = False, pcie_cards: int = 1
+    ):
+        self.pcie_full_height = pcie_full_height
+        self.pcie_cards = pcie_cards
+        if pcie_cards < 1:
+            part_no = self.part_no
+        else:
+            pci_type = "full" if self.pcie_full_height else "half"
+            part_no = f"{self.part_no}-{pcie_cards}{pci_type}"
+        super().__init__(
+            part_no=part_no,
+            x_size=self.board_x_size,
+            y_size=self.board_y_size,
+            z_size=47 + (standoff - 2),
+        )
+        self.colour = "blue"
+
     def definition(self):
         for pos in atx_mounting_holes().values():
             if pos[0] < self.x_size and pos[1] < self.y_size:
@@ -68,9 +89,14 @@ class BaseATX(Print3D):
             if pos[0] < self.x_size and pos[1] < self.z_size:
                 self.front.hole(pos=pos, diameter=10, depth=5)
         # Trim off the material not part of the face.
-        self.front.box(pos=(6.5 * 25.4, 0), depth=3.3, length=self.x_size, width=self.z_size)
+        self.front.box(pos=(6.25 * 25.4, 0), depth=3.3, length=self.x_size, width=self.z_size)
         # self.left.box(pos=(self.y_size+3.3,10), depth=3.8, length=self.y_size, width=self.z_size-20)
         self.left.box(pos=(-3.3, 0), depth=3.8, length=self.y_size, width=self.z_size)
+        # Cut out the io panel from attached material.
+        self.front.box(pos=(3, 4.7), length=156.5, width=43.2, external_subtract=True)
+        pci_h = 120 if self.pcie_full_height else 80
+        for pci in range(self.pcie_cards):
+            self.front.box(pos=(167 + pci * 20.32, 10), length=12.7, width=pci_h, external_subtract=True)
 
 
 class StandardATX(BaseATX):
@@ -80,14 +106,9 @@ class StandardATX(BaseATX):
     Including 8mm standoffs, for mounting motherboard to case.
     """
 
-    def __init__(self, standoff=8):
-        super().__init__(
-            part_no="standard-atx-motherboard",
-            x_size=305,  # TODO
-            y_size=244,  # TODO
-            z_size=47 + (standoff - 2),
-        )
-        self.colour = "blue"
+    part_no = "motherboard-standard-atx"
+    board_x_size = 305 + 3.8  # Motherboard + overhang
+    board_y_size = 244 + 3.3  # Motherboard + overhang
 
 
 class MicroATX(BaseATX):
@@ -97,11 +118,18 @@ class MicroATX(BaseATX):
     Including 8mm standoffs, for mounting motherboard to case.
     """
 
-    def __init__(self, standoff=8):
-        super().__init__(
-            part_no="micro-atx-motherboard",
-            x_size=243.84,  # TODO a bit extra for the connector section that can hang over the edge of the PCB.
-            y_size=243.84,
-            z_size=47 + (standoff - 2),
-        )
-        self.colour = "blue"
+    part_no = "motherboard-micro-atx"
+    board_x_size = 244 + 3.8  # Motherboard + overhang
+    board_y_size = 244 + 3.3  # Motherboard + overhang
+
+
+class MiniITX(BaseATX):
+    """Mini ITX motherboard.
+
+    This is for a mini ITX motherboard.
+    Including 8mm standoffs, for mounting motherboard to case.
+    """
+
+    part_no = "motherboard-mini-itx"
+    board_x_size = 170 + 3.8  # Motherboard + overhang
+    board_y_size = 170 + 3.3  # Motherboard + overhang
