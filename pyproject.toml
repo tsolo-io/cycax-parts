@@ -11,7 +11,7 @@ name = "cycax_parts"
 dynamic = ["version"]
 description = 'Selection of common parts made with CyCAx.'
 readme = "README.md"
-requires-python = ">=3.11,<3.12"
+requires-python = ">=3.10.0,<3.14"
 license = "Apache-2.0"
 keywords = ["CyCAx", "CAD"]
 authors = [{ name = "Martin Slabber", email = "martin@tsolo.io" }]
@@ -20,6 +20,8 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
