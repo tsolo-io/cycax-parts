@@ -99,7 +99,7 @@ class BaseATX(Print3D):
         for pci in range(self.pcie_cards):
             self.front.box(pos=(167 + pci * 20.32, self.standoff + 4), length=12.7, width=pci_h, external_subtract=True)
             self.front.box(
-                pos=(166 + pci * 20.32, pci_h + 4 + self.standoff + 4), length=20.5, width=3, external_subtract=True
+                pos=(166 + pci * 20.32, pci_h + 4 + self.standoff + 4), length=20.5, width=25, external_subtract=True
             )
 
 
