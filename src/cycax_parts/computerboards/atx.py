@@ -94,10 +94,10 @@ class BaseATX(Print3D):
         # self.left.box(pos=(self.y_size+3.3,10), depth=3.8, length=self.y_size, width=self.z_size-20)
         self.left.box(pos=(-3.3, 0), depth=3.8, length=self.y_size, width=self.z_size)
         # Cut out the io panel from attached material.
-        self.front.box(pos=(3, self.standoff - 1.3), length=156.5, width=43.2, external_subtract=True)
+        self.front.box(pos=(1.5, self.standoff - 2.8), length=159.5, width=46.2, external_subtract=True)
         pci_h = 120 if self.pcie_full_height else 65
         for pci in range(self.pcie_cards):
-            self.front.box(pos=(167 + pci * 20.32, self.standoff + 4), length=12.7, width=pci_h, external_subtract=True)
+            self.front.box(pos=(164 + pci * 20.32, self.standoff + 4), length=16, width=pci_h, external_subtract=True)
             self.front.box(
                 pos=(166 + pci * 20.32, pci_h + 4 + self.standoff + 4), length=20.5, width=25, external_subtract=True
             )
