@@ -12,18 +12,28 @@ class SilverstonetekFlexATX(Print3D):
         # There is a 2mm overhang at the back and left for the connector plate, if that is builtin.
 
     def definition(self):
-        # Back is where the C14 AC connector is, the back of the server.
         # Top is the Sticker.
-        # Holes are 32mm apart
-        x = 4  # TODO: Measured, not defined on drawing.
-        y = (self.y_size - 32) / 2
-        self.back.hole(pos=(x, y), diameter=4.2, external_subtract=True)
-        self.back.hole(pos=(x, y + 32), diameter=4.2, external_subtract=True)
+        # Back is where the C14 AC connector is, the back of the server.
+        x = 4.4  # Assume the hole placement is the same from both sides.
+        y = (self.z_size - 32) / 2  # Holes are 32mm apart
+        self.back.hole(pos=(self.x_size - x, y), diameter=4.2, depth=4.0)
+        self.back.hole(pos=(self.x_size - x, y), diameter=3.2, external_subtract=True)
+        self.back.hole(pos=(self.x_size - x, y + 32), diameter=4.2, depth=4.0)
+        self.back.hole(pos=(self.x_size - x, y + 32), diameter=3.2, external_subtract=True)
+        self.back.hole(pos=(x, 36), diameter=4.2, depth=4.0)
+        self.back.hole(pos=(x, 36), diameter=3.2, external_subtract=True)
+        self.back.hole(pos=(15.2, 37), diameter=4.2, depth=4.0)
+        self.back.hole(pos=(15.2, 37), diameter=3.2, external_subtract=True)
         # TODO: Define box for C14 power ports.
-        # TODO: Define holes for screws under C14 power ports.
+        # self.back.box(pos=(2, 2), length=24, width=32, external_subtract=True)
+
         # TODO: Define Airvent holes.
         # TODO: Define construction box for internal fan.
         # TODO: Define construction box for cables out of PSU.
+
+        # The following holes void the warranty when used.
+        # Since we have to remove the screws holding the PSU together.
+        # In some applications that was the only option for mounting the PSU.
         from_bottom = 8.2 + 2.6  # Measured
         from_front_0 = 6.0 + 2.6  # Measured
         from_front_r = 128.6 + 2.6  # Measured
@@ -36,4 +46,4 @@ class SilverstonetekFlexATX(Print3D):
         )
         for side, x in hole_pos:
             side.hole(pos=(x, from_bottom), diameter=3.2, external_subtract=True)
-            side.hole(pos=(x, from_bottom), diameter=3.0, depth=41)
+            side.hole(pos=(x, from_bottom), diameter=3.0, depth=4)
