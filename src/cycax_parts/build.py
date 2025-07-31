@@ -16,6 +16,7 @@ from cycax_parts.construction.conn_cube import ConnCube
 from cycax_parts.powersupplies.apevia import ApeviaFlexATX
 from cycax_parts.powersupplies.meanwell import Meanwell15V
 from cycax_parts.powersupplies.silverstonetek import SilverstonetekFlexATX
+from cycax_parts.powersupplies.pc import ATX
 
 load_dotenv()
 if os.environ.get("DEBUG"):
@@ -46,7 +47,7 @@ def motherboard_case(motherboard):
 def main():
     build_dir = Path("./build")
     build_dir.mkdir(parents=True, exist_ok=True)
-    part_classes = [ConnCube, SilverstonetekFlexATX, Meanwell15V, ApeviaFlexATX]
+    part_classes = [ConnCube, SilverstonetekFlexATX, Meanwell15V, ApeviaFlexATX, ATX]
     for part_class in part_classes:
         part = part_class()
         part.save(build_dir)
