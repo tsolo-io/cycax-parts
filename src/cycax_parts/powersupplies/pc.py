@@ -31,7 +31,7 @@ class ATX(Print3D):
         self.back.hole(pos=(from_edge + 114, from_edge), diameter=3.2, external_subtract=True)
 
         # Define large box for C14 power ports, on/off switch etc.
-        self.back.box(pos=(10, 10), length=self.x_size - 20, width=self.z_size - 20, external_subtract=True)
+        self.back.box(pos=(10, 10), length=self.x_size - 16, width=self.z_size - 20, external_subtract=True)
 
         # TODO: Define Airvent holes.
         # TODO: Define construction box for internal fan.
