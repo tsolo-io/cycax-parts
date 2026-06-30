@@ -5,18 +5,20 @@
 import logging
 import os
 from pathlib import Path
+
 from cycax.cycad import Assembly, SheetMetal
-from cycax.cycad.engines.part_build123d import PartEngineBuild123d
 from cycax.cycad.engines.assembly_build123d import AssemblyBuild123d
+from cycax.cycad.engines.part_build123d import PartEngineBuild123d
 from dotenv import load_dotenv
 
-from cycax_parts.computerboards.atx import MicroATX, StandardATX, MiniITX
+from cycax_parts.computerboards.atx import MicroATX, MiniITX, StandardATX
 from cycax_parts.computerboards.mini_itx import MiniItxMbLpPcie
+from cycax_parts.computerboards.odroid import OdroidH3, OdroidH4, OdroidH5
 from cycax_parts.construction.conn_cube import ConnCube
 from cycax_parts.powersupplies.apevia import ApeviaFlexATX
 from cycax_parts.powersupplies.meanwell import Meanwell15V
-from cycax_parts.powersupplies.silverstonetek import SilverstonetekFlexATX
 from cycax_parts.powersupplies.pc import ATX
+from cycax_parts.powersupplies.silverstonetek import SilverstonetekFlexATX
 
 load_dotenv()
 if os.environ.get("DEBUG"):
@@ -30,9 +32,17 @@ def motherboard_case(motherboard):
     assembly = Assembly(f"{name}_case")
     assembly.add(motherboard)
     upright = SheetMetal(
-        x_size=motherboard.x_size + 20, y_size=motherboard.z_size + 10, z_size=2, part_no=f"{name}-upright"
+        x_size=motherboard.x_size + 20,
+        y_size=motherboard.z_size + 10,
+        z_size=2,
+        part_no=f"{name}-upright",
     )
-    base = SheetMetal(x_size=motherboard.x_size + 20, y_size=motherboard.y_size + 10, z_size=2, part_no=f"{name}-base")
+    base = SheetMetal(
+        x_size=motherboard.x_size + 20,
+        y_size=motherboard.y_size + 10,
+        z_size=2,
+        part_no=f"{name}-base",
+    )
 
     assembly.add(upright)
     assembly.add(base)
@@ -47,7 +57,16 @@ def motherboard_case(motherboard):
 def main():
     build_dir = Path("./build")
     build_dir.mkdir(parents=True, exist_ok=True)
-    part_classes = [ConnCube, SilverstonetekFlexATX, Meanwell15V, ApeviaFlexATX, ATX]
+    part_classes = [
+        ConnCube,
+        SilverstonetekFlexATX,
+        Meanwell15V,
+        ApeviaFlexATX,
+        ATX,
+        OdroidH3,
+        OdroidH4,
+        OdroidH5,
+    ]
     for part_class in part_classes:
         part = part_class()
         part.save(build_dir)
