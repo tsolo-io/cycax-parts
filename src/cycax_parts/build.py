@@ -13,7 +13,12 @@ from dotenv import load_dotenv
 
 from cycax_parts.computerboards.atx import MicroATX, MiniITX, StandardATX
 from cycax_parts.computerboards.mini_itx import MiniItxMbLpPcie
-from cycax_parts.computerboards.odroid import OdroidH3, OdroidH4, OdroidH5
+from cycax_parts.computerboards.odroid import (
+    OdroidGeneric,
+    OdroidH3,
+    OdroidH4,
+    OdroidH5,
+)
 from cycax_parts.construction.conn_cube import ConnCube
 from cycax_parts.powersupplies.apevia import ApeviaFlexATX
 from cycax_parts.powersupplies.meanwell import Meanwell15V
@@ -66,6 +71,7 @@ def main():
         OdroidH3,
         OdroidH4,
         OdroidH5,
+        OdroidGeneric,
     ]
     for part_class in part_classes:
         part = part_class()
