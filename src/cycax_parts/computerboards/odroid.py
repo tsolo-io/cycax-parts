@@ -38,13 +38,13 @@ class OdroidH3(Cuboid):
 
         # Mounting holes
         self.bottom.hole(pos=(3.81, 3.81), diameter=3.51)
-        self.bottom.hole(pos=(3.81, 3.81), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(3.81, 3.81), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.51)
-        self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(3.81, 3.81 + 88.41), diameter=3.51)
-        self.bottom.hole(pos=(3.81, 3.81 + 88.41), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(3.81, 3.81 + 88.41), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(self.x_size - 3.96, 3.81 + 81.43), diameter=3.51)
-        self.bottom.hole(pos=(self.x_size - 3.96, 3.81 + 81.43), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(self.x_size - 3.96, 3.81 + 81.43), diameter=3.2, external_subtract=True)
 
 
 class OdroidH4(Cuboid):
@@ -81,15 +81,15 @@ class OdroidH4(Cuboid):
 
         # Mounting holes
         self.bottom.hole(pos=(3.81, 3.81), diameter=3.51)
-        self.bottom.hole(pos=(3.81, 3.81), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(3.81, 3.81), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.51)
-        self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(3.81, 3.81 + 98.41), diameter=3.51)
-        self.bottom.hole(pos=(3.81, 3.81 + 98.41), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(3.81, 3.81 + 98.41), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(3.81 + 16.36, 3.81 + 72.37), diameter=3.51)
-        self.bottom.hole(pos=(3.81 + 16.36, 3.81 + 72.37), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(3.81 + 16.36, 3.81 + 72.37), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(self.x_size - 12.7, 3.81 + 91.42), diameter=3.51)
-        self.bottom.hole(pos=(self.x_size - 12.7, 3.81 + 91.42), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(self.x_size - 12.7, 3.81 + 91.42), diameter=3.2, external_subtract=True)
 
 
 class OdroidH5(Cuboid):
@@ -126,10 +126,10 @@ class OdroidH5(Cuboid):
 
         # Mounting holes
         self.bottom.hole(pos=(3.81, 3.81), diameter=3.51)
-        self.bottom.hole(pos=(3.81, 3.81), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(3.81, 3.81), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.51)
-        self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(self.x_size - 3.96, 3.81), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(3.81, 3.81 + 98.41), diameter=3.51)
-        self.bottom.hole(pos=(3.81, 3.81 + 98.41), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(3.81, 3.81 + 98.41), diameter=3.2, external_subtract=True)
         self.bottom.hole(pos=(self.x_size - 12.7, 3.81 + 91.42), diameter=3.51)
-        self.bottom.hole(pos=(self.x_size - 12.7, 3.81 + 91.42), diameter=3.7, external_subtract=True)
+        self.bottom.hole(pos=(self.x_size - 12.7, 3.81 + 91.42), diameter=3.2, external_subtract=True)
