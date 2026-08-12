@@ -27,7 +27,9 @@ class SilverstonetekFlexATX(Print3D):
         # Define box for C14 power ports.
         self.back.box(pos=(1, 1), length=60, width=31, external_subtract=True)
         # Define cutout for fan
-        self.back.hole(pos=(self.x_size - self.z_size / 2, self.z_size / 2), diameter=self.z_size-1, external_subtract=True)
+        self.back.hole(
+            pos=(self.x_size - self.z_size / 2, self.z_size / 2), diameter=self.z_size - 1, external_subtract=True
+        )
 
         # TODO: Define Airvent holes.
         # TODO: Define construction box for internal fan.

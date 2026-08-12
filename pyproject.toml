@@ -27,7 +27,7 @@ classifiers = [
 ]
 dependencies = [
     "python-dotenv",
-    "cycax @ git+https://github.com/tsolo-io/cycax"
+    # "cycax @ git+https://github.com/tsolo-io/cycax"
 ]
 
 [project.urls]
@@ -42,9 +42,9 @@ path = "src/cycax_parts/__about__.py"
 allow-direct-references = true
 
 [tool.hatch.envs.default]
-# pre-install-commands = [
-#   "pip install -e {home:uri}/src/tsolo/cycax"
-# ]
+pre-install-commands = [
+  "pip install -e {home:uri}/src/tsolo/cycax"
+]
 dependencies = []
 
 [[tool.hatch.envs.all.matrix]]
