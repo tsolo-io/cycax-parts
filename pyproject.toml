@@ -42,9 +42,9 @@ path = "src/cycax_parts/__about__.py"
 allow-direct-references = true
 
 [tool.hatch.envs.default]
-pre-install-commands = [
-  "pip install -e {home:uri}/src/tsolo/cycax"
-]
+# pre-install-commands = [
+#   "pip install -e {home:uri}/src/tsolo/cycax"
+# ]
 dependencies = []
 
 [[tool.hatch.envs.all.matrix]]
