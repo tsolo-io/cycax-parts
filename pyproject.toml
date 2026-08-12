@@ -27,7 +27,7 @@ classifiers = [
 ]
 dependencies = [
     "python-dotenv",
-    # "cycax @ git+https://github.com/tsolo-io/cycax"
+    "cycax @ git+https://github.com/tsolo-io/cycax"
 ]
 
 [project.urls]
