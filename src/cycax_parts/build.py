@@ -20,10 +20,12 @@ from cycax_parts.computerboards.odroid import (
     OdroidH5,
 )
 from cycax_parts.construction.conn_cube import ConnCube
+from cycax_parts.gpus.gpu import GPU
 from cycax_parts.powersupplies.apevia import ApeviaFlexATX
 from cycax_parts.powersupplies.meanwell import Meanwell15V
 from cycax_parts.powersupplies.pc import ATX
 from cycax_parts.powersupplies.silverstonetek import SilverstonetekFlexATX
+from cycax_parts.storage.storage_devices import LFF, SFF
 
 load_dotenv()
 if os.environ.get("DEBUG"):
@@ -68,10 +70,13 @@ def main():
         Meanwell15V,
         ApeviaFlexATX,
         ATX,
+        GPU,
         OdroidH3,
         OdroidH4,
         OdroidH5,
         OdroidGeneric,
+        LFF,
+        SFF,
     ]
     for part_class in part_classes:
         part = part_class()
