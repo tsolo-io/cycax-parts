@@ -38,8 +38,8 @@ class Fan(Cuboid):
         self.hole_depth = hole_depth
         self.hole_diameter = hole_diameter
         # hole_from_edge - The distance the center of mounting holes is from the edge.
-        # Normally 4mm but we can be more specific for fan sizes we know.
-        self.hole_from_edge = {80.0: 4.25}.get(float(size), 4)
+        # This value is different for each fan size.
+        self.hole_from_edge = {40.0: 4, 80.0: 4.25, 120.0: 7.5}.get(float(size), 4)
         self.side_pad = side_pad
 
         super().__init__(part_no=part_no, x_size=size, y_size=size, z_size=thickness)
